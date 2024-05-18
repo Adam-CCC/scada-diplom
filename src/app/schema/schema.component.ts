@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import "external-svg-loader";
 
 @Component({
   selector: 'app-schema',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schema.component.scss']
 })
 export class SchemaComponent implements OnInit {
-  constructor() {}
+
+  @ViewChild("your_svg", {static: true}) svg!: ElementRef
+
+  constructor() {
+    this.svg = {} as ElementRef;
+  }
 
   ngOnInit() {
+    console.log(this.svg);
   }
 }

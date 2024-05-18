@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SchemaComponent } from './schema/schema.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SchemaComponent } from './schema/schema.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
