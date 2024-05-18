@@ -1,5 +1,6 @@
 .header {
-    height: 80px; /* Фиксированная высота для header */
+    height: 10vh; /* Фиксированная высота для header */
+    width: 100wh;
     background-color: #2c3e50; /* Цвет фона header */
     color: white; /* Цвет текста header */
     display: flex; /* Используйте flex для расположения содержимого header */

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import "external-svg-loader";
 
 @Component({
@@ -6,15 +6,11 @@ import "external-svg-loader";
   templateUrl: './schema.component.html',
   styleUrls: ['./schema.component.scss']
 })
-export class SchemaComponent implements OnInit {
+export class SchemaComponent implements AfterViewInit {
+  constructor(private elementRef: ElementRef) {}
 
-  @ViewChild("your_svg", {static: true}) svg!: ElementRef
-
-  constructor() {
-    this.svg = {} as ElementRef;
-  }
-
-  ngOnInit() {
-    console.log(this.svg);
+  ngAfterViewInit() {
+    const componentElement = this.elementRef.nativeElement;
+    console.log(componentElement.querySelector("#tp11")); // Вывод DOM-элемента компонента в консоль
   }
 }
