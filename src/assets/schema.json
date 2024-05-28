@@ -1,0 +1,29 @@
+[
+    {
+      "elementId": "light_indicator",
+      "rules": [
+        {
+          "variable": "light",
+          "value": 0,
+          "style": {
+            "fill": "white"
+          }
+        },
+        {
+          "variable": "light",
+          "value": 1,
+          "style": {
+            "fill": "green"
+          }
+        },
+        {
+          "variable": "light",
+          "value": 2,
+          "style": {
+            "fill": "red"
+          }
+        }
+      ]
+    }
+  ]
+  

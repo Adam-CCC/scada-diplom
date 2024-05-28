@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,9 @@ import { Observable, Subject } from 'rxjs';
 export class WebSocketService {
   private socket: WebSocket | undefined;
   private subject: Subject<any> = new Subject();
+  private dataUrl = 'assets/schema.json'; // URL к вашему JSON файлу
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.connect();
   }
 
@@ -31,5 +33,9 @@ export class WebSocketService {
 
   public getMessages(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  getData(): Observable<any> {
+    return this.http.get<any>(this.dataUrl);
   }
 }
