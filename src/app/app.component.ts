@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { WebSocketService } from './services/web-socket.service'; 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'; 
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   feeder1Color = 'gray';
   data: any;
-  light = 2;
+  light = 1;
 
   constructor(private webSocketService: WebSocketService, private http: HttpClient) {}
 
@@ -21,14 +21,22 @@ export class AppComponent implements OnInit {
     });
 
     this.webSocketService.getData().subscribe((response) => {
-      this.webSocketService.getData().subscribe((response) => {
         this.data = response;
         console.log('Data from JSON:', this.data); // Выводим данные в консоль
 
         // Применяем стили к элементам на основе JSON данных
         this.applyStyles();
-      });
     });
+
+    setInterval(() => {
+      this.updateLight();
+    }, 1000);
+  }
+
+  updateLight() {
+    this.light = Math.floor(Math.random() * 3); // Генерация случайного числа от 0 до 2
+    this.applyStyles();
+    console.log(this.light);
   }
 
   applyStyles() {
