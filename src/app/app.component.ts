@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomManipulation } from './services/dom-manipulation/dom-manipulation.service'
+import { DomManipulation } from './services/dom-manipulation/dom/dom-manipulation.service'
 
 @Component({
   selector: 'app-root',
