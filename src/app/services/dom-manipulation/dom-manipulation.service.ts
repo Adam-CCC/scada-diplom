@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebSocketService } from '../web-socket.service';
+import { TimeService } from './time/time.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,37 +10,26 @@ export class DomManipulation {
   data: any;
   resetArrows: any;
 
+  formatedDateTime: string = "";
   feeder1Color = 'gray';
   intervalId: any;
   numberResetArrows = 0;
   stateLog = "";
   secondLineCurrent = 0;
-  firstLineCurrent = 0.8;
-  formatedDateTime: string = "";
+  firstLineCurrent = 1.3;
   light = 3;
 
-  constructor(private webSocketService: WebSocketService) { 
+  constructor(
+    private webSocketService: WebSocketService,
+    private time: TimeService
+  ) { 
+    this.formatedDateTime = this.time.formatedDateTime;
     this.initWebSocket();
 
     setInterval(() => {
       this.updateVariable();
     }, 1000);
   } 
-
-  private updateDateTime() {
-    const now = new Date();
-
-    const day = this.padZero(now.getDate());
-    const month = this.padZero(now.getMonth() + 1);
-    const hours = this.padZero(now.getHours());
-    const minutes = this.padZero(now.getMinutes());
-
-    this.formatedDateTime = `${day}/${month}/${hours}:${minutes}`;
-  }
-
-  private padZero(num: number): string {
-    return num < 10 ? '0' + num : num.toString();
-  }
 
   private initWebSocket () {
     this.webSocketService.getMessages().subscribe((message) => {
@@ -57,7 +47,7 @@ export class DomManipulation {
   }
 
   public updateVariable() {
-    this.updateDateTime();
+    this.time.updateDateTime();
     this.applyStyles();
   }
 
