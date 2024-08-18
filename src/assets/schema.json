@@ -5,17 +5,17 @@
       "value": {
         "0": {
           "style": {
-            "fill": "white"
+            "fill": "green"
           }
         },
         "1": {
           "style": {
-            "fill": "#452c23"
+            "fill": "red"
           }
         },
         "2": {
           "style": {
-            "fill": "red"
+            "fill": "yellow"
           }
         }
       }

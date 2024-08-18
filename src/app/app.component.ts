@@ -14,13 +14,12 @@ export class AppComponent implements OnInit {
   data: any;
   intervalId: any;
   resetArrows: any;
-  
   numberResetArrows = 0;
-  stateLog = "Состояние статчиное";
+  stateLog = "";
   secondLineCurrent = 0;
-  firstLineCurrent = 0;
+  firstLineCurrent = 0.8;
   formatedDateTime: string = "";
-  light = 1;
+  light = 3;
 
   constructor(private webSocketService: WebSocketService, private http: HttpClient) {
     this.updateDateTime();
@@ -62,7 +61,6 @@ export class AppComponent implements OnInit {
 
   updateVariable() {
     this.updateDateTime();
-    this.light = Math.floor(Math.random() * 3); // Генерация случайного числа от 0 до 2
     this.applyStyles();
   }
 
