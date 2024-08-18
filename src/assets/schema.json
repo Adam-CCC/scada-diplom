@@ -1,0 +1,91 @@
+[
+    {
+      "elementId": "traffic_light_1",
+      "variable": "light",
+      "value": {
+        "0": {
+          "style": {
+            "fill": "green"
+          }
+        },
+        "1": {
+          "style": {
+            "fill": "red"
+          }
+        },
+        "2": {
+          "style": {
+            "fill": "yellow"
+          }
+        }
+      }
+    },
+    {
+      "elementId": "traffic_light_2",
+      "variable": "light",
+      "value": {
+        "0": {
+          "style": {
+            "fill": "yellow"
+          }
+        },
+        "1": {
+          "style": {
+            "fill": "green"
+          }
+        },
+        "2": {
+          "style": {
+            "fill": "red"
+          }
+        }
+      }
+    },
+    {
+      "elementId": "Clock",
+      "variable": "formatedDateTime",
+      "value": {
+        "default": {
+          "style": "formatedDateTime"
+        }
+      }
+    },
+    {
+      "elementId": "current_strength_1_arrow",
+      "variable": "firstLineCurrent",
+      "value": {
+        "default": {
+          "style": "firstLineCurrent"
+        }
+      }
+    },
+    {
+      "elementId": "current_strength_2_arrow",
+      "variable": "secondLineCurrent",
+      "value": {
+        "default": {
+          "style": "secondLineCurrent"
+        }
+      }
+    },
+    
+    {
+      "elementId": "console_object",
+      "variable": "stateLog",
+      "value": {
+        "default": {
+          "style": "stateLog"
+        }
+      }
+    },
+    {
+      "elementId": "number_line_resets",
+      "variable": "numberResetArrows",
+      "value": {
+        "default": {
+          "style": "numberResetArrows"
+        }
+      }
+    }
+  ]
+  
