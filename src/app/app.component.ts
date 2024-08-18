@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from './services/web-socket.service'; 
 import { HttpClient } from '@angular/common/http';
 import { DomManipulation } from './services/dom-manipulation/dom-manipulation.service'
-import { Observable } from 'rxjs'; 
-import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
