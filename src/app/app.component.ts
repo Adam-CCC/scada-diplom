@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from './services/web-socket.service'; 
 import { HttpClient } from '@angular/common/http';
+import { DomManipulation } from './services/dom-manipulation/dom-manipulation.service'
 import { Observable } from 'rxjs'; 
 import { style } from '@angular/animations';
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   formatedDateTime: string = "";
   light = 3;
 
-  constructor(private webSocketService: WebSocketService, private http: HttpClient) {
+  constructor(private webSocketService: WebSocketService, private domManipulation: DomManipulation, private http: HttpClient) {
     this.updateDateTime();
   }
 
@@ -64,43 +65,26 @@ export class AppComponent implements OnInit {
     this.applyStyles();
   }
 
-  setStyle(style: any, element: any) {
-    if (style !== null || undefined) {
-      for (const key in style) {
-        element.setAttribute(key, style[key]);
-      }
-    }
-  }
-
-  getChildsElement(element: any, attr: any, value: any) {
-    let children = element.children
-
-    // Перебираем всех детей и выводим их в консоль
-    for (var i = 0; i < children.length; i++) {
-      children[i].setAttribute(attr, value);
-    }
-  }
-
   setClicks() {
     this.resetArrows = document.getElementById("reset_button");
     this.resetArrows?.addEventListener("click", () => {
       let arrow1 = document.getElementById("arrow_1");
-      this.getChildsElement(arrow1, "stroke", "#FD3232");
+      this.domManipulation.getChildsElement(arrow1, "stroke", "#FD3232");
 
       let arrow2 = document.getElementById("arrow_2");
-      this.getChildsElement(arrow2, "stroke", "#FD3232");
+      this.domManipulation.getChildsElement(arrow2, "stroke", "#FD3232");
 
       let path2_2 = document.getElementById("path_2_2");
-      this.getChildsElement(path2_2, "stroke", "#9FFF72");
+      this.domManipulation.getChildsElement(path2_2, "stroke", "#9FFF72");
       
       let path3_2 = document.getElementById("path_3_2");
-      this.getChildsElement(path3_2, "stroke", "#9FFF72");
+      this.domManipulation.getChildsElement(path3_2, "stroke", "#9FFF72");
 
       let path1_2 = document.getElementById("path_1_2");
-      this.getChildsElement(path1_2, "stroke", "#9FFF72");
+      this.domManipulation.getChildsElement(path1_2, "stroke", "#9FFF72");
       
       let path1_3 = document.getElementById("path_1_2");
-      this.getChildsElement(path1_3, "stroke", "#9FFF72");
+      this.domManipulation.getChildsElement(path1_3, "stroke", "#9FFF72");
     })
   }
 
@@ -124,7 +108,7 @@ export class AppComponent implements OnInit {
             for (const obj in item[k]) {
               if (obj == variableValue) { // Задаем стили, в зависимости
                 style = item[k][obj].style;
-                this.setStyle(style, element)
+                this.domManipulation.setStyle(style, element)
               } else if (obj !== variableValue && item[k].default) { // Если надо отобразить текст
                 if (typeof item[k][obj].style === "string") {
                   style = item[k][obj].style;
