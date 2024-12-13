@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    tools {nodejs "nodejs"}
+
     stages {
         stage('Install Dependencies') {
             steps {
@@ -12,14 +14,14 @@ pipeline {
         stage('Build Project') {
             steps {
                 echo 'Building the Angular project...'
-                sh 'npm run build --prod'
+                sh 'npm run start'
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo 'Running unit tests...'
-                sh 'npm test'
+                sh 'npm run test'
             }
         }
 
