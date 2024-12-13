@@ -11,7 +11,6 @@ export class WebSocketService {
   private dataUrl = 'assets/schema.json'; // URL к вашему JSON файлу
 
   constructor(private http: HttpClient) {
-    this.connect();
   }
 
   private connect() {
