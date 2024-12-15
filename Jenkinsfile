@@ -1,10 +1,19 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build project') {
+        stage('Checkout') {
             steps {
-                echo 'Buld...'
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install -g @angular/cli'
+                sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
                 sh 'ng serve'
             }
         }
