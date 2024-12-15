@@ -41,7 +41,38 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo 'Running unit tests...'
-                sh 'npm run test'
+                sh '''
+                nohup npm run test > test.log 2>&1 &
+                echo $! > test.pid # Сохраняем PID тестового процесса
+                '''
+                // Ожидание старта тестов и их завершения
+                script {
+                    def maxRetries = 20
+                    def retries = 0
+                    while (retries < maxRetries) {
+                        // Проверяем, жив ли процесс
+                        def testProcess = sh(script: "ps -p $(cat test.pid) > /dev/null 2>&1", returnStatus: true)
+                        if (testProcess != 0) {
+                            echo "Tests completed!"
+                            break
+                        } else {
+                            echo "Waiting for tests to complete..."
+                            sleep(5)
+                            retries++
+                        }
+                    }
+                    if (retries == maxRetries) {
+                        error("Tests did not complete within the timeout period.")
+                    }
+
+                    // Проверяем результат тестов
+                    def testLog = readFile('test.log')
+                    if (testLog.contains('FAIL') || testLog.contains('ERR')) {
+                        error("Tests failed. Check test.log for details.")
+                    } else {
+                        echo "Tests passed successfully!"
+                    }
+                }
             }
         }
     }
@@ -52,6 +83,7 @@ pipeline {
         }
         failure {
             echo 'Build or tests failed!'
+            archiveArtifacts artifacts: 'server.log, test.log', allowEmptyArchive: true
         }
     }
 }
