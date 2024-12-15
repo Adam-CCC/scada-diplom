@@ -1,20 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Check Node.js') {
             steps {
-                checkout scm
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install -g @angular/cli'
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'ng serve'
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
     }
