@@ -12,14 +12,18 @@ pipeline {
         stage('Build Project') {
             steps {
                 echo 'Building the Angular project...'
-                sh 'npm run start'
+                sh '''
+                nohup npm run start > server.log 2>&1 &
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo 'Running unit tests...'
-                sh 'npm run test'
+                sh '''
+                nohup npm run test > server.log 2>&1 &
+                '''
             }
         }
     }
