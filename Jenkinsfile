@@ -1,10 +1,11 @@
 pipeline {
     agent any
+
     stages {
-        stage('Check Node.js') {
+        stage('Build project') {
             steps {
-                sh 'node -v'
-                sh 'npm -v'
+                echo 'Buld...'
+                sh 'ng serve'
             }
         }
     }
